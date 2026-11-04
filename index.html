@@ -18,6 +18,7 @@
       --muted: #9aa1b2;
       --accent: #5b8cff;
       --accent-2: #9b6bff;
+      --on-accent: #0f1117;
       --radius: 14px;
       --max: 1100px;
       --shadow: 0 10px 30px rgba(0, 0, 0, .25);
@@ -31,6 +32,7 @@
       --muted: #5c6475;
       --accent: #3366ee;
       --accent-2: #7a4ae0;
+      --on-accent: #ffffff;
       --shadow: 0 10px 30px rgba(30, 40, 80, .08);
     }
 
@@ -73,7 +75,19 @@
       display: grid; place-items: center; font-size: 1.1rem;
     }
     .menu-btn { display: none; }
-    .lang-btn { font-size: .8rem; font-weight: 700; letter-spacing: .03em; }
+    /* Διακόπτης γλώσσας: το ενεργό κουμπί είναι γεμάτο */
+    .lang-switch {
+      display: flex; height: 40px; padding: 3px; gap: 2px;
+      border: 1px solid var(--border); border-radius: 10px;
+    }
+    .lang-switch button {
+      width: 34px; border: none; border-radius: 7px; cursor: pointer;
+      background: none; color: var(--muted);
+      font: inherit; font-size: .78rem; font-weight: 700; letter-spacing: .03em;
+      transition: background .2s, color .2s;
+    }
+    .lang-switch button:hover { color: var(--text); }
+    .lang-switch button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
 
     /* ---------- Hero ---------- */
     .hero { padding: 100px 0 80px; position: relative; overflow: hidden; }
@@ -243,6 +257,8 @@
       .logo-short { display: inline; }
       .nav-actions { gap: 6px; }
       .icon-btn { width: 36px; height: 36px; font-size: 1rem; }
+      .lang-switch { height: 36px; }
+      .lang-switch button { width: 30px; }
       .hero { padding: 40px 0 48px; }
       .hero h1 { font-size: clamp(1.7rem, 9vw, 2.2rem); }
       .hero p { font-size: 1rem; }
@@ -263,11 +279,14 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="#about" data-i18n="nav.about">Σχετικά</a></li>
         <li><a href="#skills" data-i18n="nav.skills">Δεξιότητες</a></li>
-        <li><a href="#projects">Projects</a></li>
+        <li><a href="#projects" data-i18n="nav.projects">Εργασίες</a></li>
         <li><a href="#contact" data-i18n="nav.contact">Επικοινωνία</a></li>
       </ul>
       <div class="nav-actions">
-        <button class="icon-btn lang-btn" id="langBtn" aria-label="Switch to English">EN</button>
+        <div class="lang-switch" id="langSwitch" role="group" data-i18n-aria="aria.lang" aria-label="Γλώσσα">
+          <button type="button" data-lang="el" lang="el" aria-label="Ελληνικά" aria-pressed="true">ΕΛ</button>
+          <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
+        </div>
         <button class="icon-btn" id="themeBtn" data-i18n-aria="aria.theme" aria-label="Αλλαγή θέματος">🌙</button>
         <button class="icon-btn menu-btn" id="menuBtn" data-i18n-aria="aria.menu" aria-label="Μενού" aria-expanded="false">☰</button>
       </div>
@@ -283,7 +302,7 @@
           <h1 data-i18n="hero.title">Μάρθα Χαραλαμπίδου<br><span class="gradient">Φοιτήτρια Πληροφορικής</span></h1>
           <p data-i18n="hero.text">Σπουδάζω στο Τμήμα Πληροφορικής του Αριστοτελείου Πανεπιστημίου Θεσσαλονίκης. Μου αρέσει να χτίζω εφαρμογές που λύνουν πραγματικά προβλήματα.</p>
           <div class="btns">
-            <a href="#projects" class="btn btn-primary" data-i18n="hero.cta1">Δες τα projects μου →</a>
+            <a href="#projects" class="btn btn-primary" data-i18n="hero.cta1">Δες τις εργασίες μου →</a>
             <a href="#contact" class="btn btn-ghost" data-i18n="hero.cta2">Επικοινωνία</a>
           </div>
         </div>
@@ -354,7 +373,7 @@
     <!-- ===== PROJECTS ===== -->
     <section id="projects">
       <div class="container">
-        <h2 class="section-title reveal"><span class="mono">03.</span>Projects</h2>
+        <h2 class="section-title reveal" data-i18n="projects.title"><span class="mono">03.</span>Εργασίες</h2>
         <p class="section-sub reveal" data-i18n="projects.sub">Επιλεγμένες εργασίες από τις σπουδές και προσωπικά projects</p>
 
         <div class="projects-grid">
@@ -371,9 +390,9 @@
           <article class="project reveal">
             <div class="project-thumb">⚙️</div>
             <div class="project-body">
-              <h3>Diffie Hellman Key Exchange Protocol</h3>
+              <h3 data-i18n="p2.title">Πρωτόκολλο Ανταλλαγής Κλειδιών Diffie-Hellman</h3>
               <p data-i18n="p2.desc">Πρόγραμμα σε Python που υλοποιεί το πρωτόκολλο ανταλλαγής Diffie Hellman για g=3, p=101, a=77, b=91.</p>
-              <div class="project-tags"><span>#Python</span><span>#Cryptography</span></div>
+              <div class="project-tags"><span>#Python</span><span data-i18n="tag.crypto">#Κρυπτογραφία</span></div>
               <div class="project-links"><a href="https://github.com/marthachd/Diffie-Hellman-Key-Exchange-Protocol-Assignment" target="_blank" rel="noopener">GitHub ↗</a></div>
             </div>
           </article>
@@ -391,9 +410,9 @@
           <article class="project reveal">
             <div class="project-thumb">⚙️</div>
             <div class="project-body">
-              <h3>Wiener's Attack on RSA</h3>
-              <p data-i18n="p4.desc">Επίθεση του Wiener για την εύρεση του ιδιωτικού εκθέτη d, αξιοποιώντας τα συνεχόμενα κλάσματα του λόγου e/N. Αφού υπολογιστεί το ιδιωτικό κλειδί, γίνεται αποκρυπτογράφηση του κρυπτοκειμένου block by block.</p>
-              <div class="project-tags"><span>#Python</span><span>#Cryptography</span></div>
+              <h3 data-i18n="p4.title">Η Επίθεση του Wiener στο RSA</h3>
+              <p data-i18n="p4.desc">Επίθεση του Wiener για την εύρεση του ιδιωτικού εκθέτη d, αξιοποιώντας τα συνεχόμενα κλάσματα του λόγου e/N. Αφού υπολογιστεί το ιδιωτικό κλειδί, γίνεται αποκρυπτογράφηση του κρυπτοκειμένου μπλοκ προς μπλοκ.</p>
+              <div class="project-tags"><span>#Python</span><span data-i18n="tag.crypto">#Κρυπτογραφία</span></div>
               <div class="project-links"><a href="https://github.com/marthachd/Wiener-s-Attack-on-RSA-Assignment" target="_blank" rel="noopener">GitHub ↗</a></div>
             </div>
           </article>
@@ -401,8 +420,8 @@
           <article class="project reveal">
             <div class="project-thumb">⚙️</div>
             <div class="project-body">
-              <h3>x86 Assembly Animation Using Video Memory</h3>
-              <p data-i18n="p5.desc">Υλοποίηση animation σε 16-bit x86 Assembly, με άμεση πρόσβαση στη video memory, χρονισμό μέσω timer interrupt και κίνηση ενός χαρακτήρα με μεταβολή χρώματος και τυχαία επέκταση.</p>
+              <h3 data-i18n="p5.title">Animation σε x86 Assembly με Χρήση της Μνήμης Βίντεο</h3>
+              <p data-i18n="p5.desc">Υλοποίηση animation σε 16-bit x86 Assembly, με άμεση πρόσβαση στη μνήμη βίντεο, χρονισμό μέσω timer interrupt και κίνηση ενός χαρακτήρα με μεταβολή χρώματος και τυχαία επέκταση.</p>
               <div class="project-tags"><span>#Assembly</span></div>
               <div class="project-links"><a href="https://github.com/marthachd/x86-Assembly-Animation-Using-Video-Memory-Assignment" target="_blank" rel="noopener">GitHub ↗</a></div>
             </div>
@@ -513,8 +532,8 @@
     // ---------- Γλώσσα (Ελληνικά / English) ----------
     const EN = {
       "logo": '&lt;<span class="logo-full">Martha Charalampidou</span><span class="logo-short">MC</span><span>/</span>&gt;',
-      "nav.about": "About", "nav.skills": "Skills", "nav.contact": "Contact",
-      "aria.theme": "Toggle theme", "aria.menu": "Menu",
+      "nav.about": "About", "nav.skills": "Skills", "nav.projects": "Projects", "nav.contact": "Contact",
+      "aria.theme": "Toggle theme", "aria.menu": "Menu", "aria.lang": "Language",
       "hero.tag": "👋 Hi, I'm",
       "hero.title": 'Martha Charalampidou<br><span class="gradient">Informatics Student</span>',
       "hero.text": "I study at the School of Informatics of the Aristotle University of Thessaloniki. I love building applications that solve real problems.",
@@ -532,13 +551,18 @@
       "skills.title": '<span class="mono">02.</span>Skills',
       "skills.sub": "Technologies and tools I work with",
       "skills.langs": "💻 Languages", "skills.data": "🗄️ Data & AI", "skills.tools": "🛠️ Tools",
+      "projects.title": '<span class="mono">03.</span>Projects',
       "projects.sub": "Selected coursework and personal projects",
+      "tag.crypto": "#Cryptography",
       "p1.title": "Scrabble Game in Python",
       "p1.desc": "A simplified version of the game Scrabble.",
+      "p2.title": "Diffie Hellman Key Exchange Protocol",
       "p2.desc": "A Python program implementing the Diffie-Hellman key exchange protocol for g=3, p=101, a=77, b=91.",
       "p3.title": "Data Structures Library in C++",
       "p3.desc": "Team project building a C++ library that supports the following data structures: min heap, max heap, AVL binary search tree, undirected weighted graph and hash table.",
+      "p4.title": "Wiener's Attack on RSA",
       "p4.desc": "Wiener's attack for recovering the private exponent d using the continued fraction expansion of e/N. Once the private key is found, the ciphertext is decrypted block by block.",
+      "p5.title": "x86 Assembly Animation Using Video Memory",
       "p5.desc": "An animation in 16-bit x86 Assembly with direct access to video memory, timing via the timer interrupt, and a moving character that changes color and expands randomly.",
       "p6.title": "Personal Portfolio",
       "p6.desc": "This very website! Responsive design, dark/light theme and Greek/English versions in plain HTML/CSS/JS.",
@@ -550,13 +574,17 @@
       "meta.title": "Portfolio | Martha Charalampidou",
       "meta.desc": "Personal portfolio of an Informatics student at AUTh",
       "mail.subject": "Contact from portfolio", "mail.name": "Name",
-      "mail.sent": "Opening your email client… Thank you for your message!"
+      "mail.sent": "Opening your email client… Thank you for your message!",
+      "val.required": "Please fill in this field.",
+      "val.email": "Please enter a valid email address."
     };
     const EL = {
       "meta.title": document.title,
       "meta.desc": document.querySelector('meta[name="description"]').content,
       "mail.subject": "Επικοινωνία από το portfolio", "mail.name": "Όνομα",
-      "mail.sent": "Ανοίγει το πρόγραμμα email σου… Ευχαριστώ για το μήνυμα!"
+      "mail.sent": "Ανοίγει το πρόγραμμα email σου… Ευχαριστώ για το μήνυμα!",
+      "val.required": "Συμπλήρωσε αυτό το πεδίο.",
+      "val.email": "Γράψε ένα έγκυρο email."
     };
     // Τα ελληνικά κείμενα διαβάζονται από το ίδιο το HTML
     document.querySelectorAll("[data-i18n]").forEach(el => EL[el.dataset.i18n] = el.innerHTML);
@@ -564,7 +592,8 @@
 
     let lang = "el";
     const t = k => (lang === "en" ? EN : EL)[k];
-    const langBtn = document.getElementById("langBtn");
+    const langSwitch = document.getElementById("langSwitch");
+    const contactForm = document.getElementById("contactForm");
     const setLang = l => {
       lang = l;
       root.setAttribute("lang", l);
@@ -572,18 +601,29 @@
       document.querySelectorAll("[data-i18n-aria]").forEach(el => el.setAttribute("aria-label", t(el.dataset.i18nAria)));
       document.title = t("meta.title");
       document.querySelector('meta[name="description"]').content = t("meta.desc");
-      langBtn.textContent = l === "en" ? "ΕΛ" : "EN";
-      langBtn.setAttribute("aria-label", l === "en" ? "Αλλαγή σε Ελληνικά" : "Switch to English");
+      langSwitch.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === l));
+      // Καθαρίζει τα μηνύματα επικύρωσης της προηγούμενης γλώσσας
+      contactForm.querySelectorAll("input, textarea").forEach(f => f.setCustomValidity(""));
       document.getElementById("formMsg").textContent = "";
       try { localStorage.setItem("lang", l); } catch (e) {}
     };
     let savedLang = null;
     try { savedLang = localStorage.getItem("lang"); } catch (e) {}
     if (savedLang === "en" || new URLSearchParams(location.search).get("lang") === "en") setLang("en");
-    langBtn.addEventListener("click", () => setLang(lang === "en" ? "el" : "en"));
+    langSwitch.addEventListener("click", e => {
+      const b = e.target.closest("button[data-lang]");
+      if (b && b.dataset.lang !== lang) setLang(b.dataset.lang);
+    });
+
+    // Μηνύματα επικύρωσης στη γλώσσα της σελίδας (όχι του browser)
+    contactForm.addEventListener("invalid", e => {
+      const f = e.target;
+      f.setCustomValidity(f.validity.valueMissing ? t("val.required") : f.validity.typeMismatch ? t("val.email") : "");
+    }, true);
+    contactForm.addEventListener("input", e => e.target.setCustomValidity(""));
 
     // Contact form -> ανοίγει το email client
-    document.getElementById("contactForm").addEventListener("submit", e => {
+    contactForm.addEventListener("submit", e => {
       e.preventDefault();
       const f = e.target;
       const subject = f.subject.value || t("mail.subject");
