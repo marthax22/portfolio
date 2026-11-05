@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Προσωπικό portfolio φοιτητή/τριας Πληροφορικής ΑΠΘ">
+  <title>Portfolio | Μάρθα Χαραλαμπίδου </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f1117;
+      --bg-alt: #161922;
+      --card: #1c202b;
+      --border: #2a2f3d;
+      --text: #e6e8ee;
+      --muted: #9aa1b2;
+      --accent: #5b8cff;
+      --accent-2: #9b6bff;
+      --on-accent: #0f1117;
+      --danger: #ff6b6b;
+      --radius: 14px;
+      --max: 1100px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .25);
+    }
+    :root[data-theme="light"] {
+      --bg: #f7f8fb;
+      --bg-alt: #eef0f6;
+      --card: #ffffff;
+      --border: #dfe3ec;
+      --text: #1a1d26;
+      --muted: #5c6475;
+      --accent: #3366ee;
+      --accent-2: #7a4ae0;
+      --on-accent: #ffffff;
+      --danger: #d93036;
+      --shadow: 0 10px 30px rgba(30, 40, 80, .08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body {
+      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      transition: background .3s, color .3s;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    .container { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+    .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+
+    /* ---------- Navbar ---------- */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: color-mix(in srgb, var(--bg) 85%, transparent);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 64px; }
+    .logo {
+      font-weight: 800; font-size: clamp(.8rem, 4.2vw, 1.15rem); color: var(--text);
+      min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .logo span:last-child { color: var(--accent); }
+    .logo-short { display: none; }
+    .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
+    .nav-links a { color: var(--muted); font-weight: 500; font-size: .95rem; transition: color .2s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .icon-btn {
+      background: none; border: 1px solid var(--border); color: var(--text);
+      width: 40px; height: 40px; border-radius: 10px; cursor: pointer;
+      display: grid; place-items: center; font-size: 1.1rem;
+    }
+    .menu-btn { display: none; }
+    /* Διακόπτης γλώσσας: το ενεργό κουμπί είναι γεμάτο */
+    .lang-switch {
+      display: flex; height: 40px; padding: 3px; gap: 2px;
+      border: 1px solid var(--border); border-radius: 10px;
+    }
+    .lang-switch button {
+      width: 34px; border: none; border-radius: 7px; cursor: pointer;
+      background: none; color: var(--muted);
+      font: inherit; font-size: .78rem; font-weight: 700; letter-spacing: .03em;
+      transition: background .2s, color .2s;
+    }
+    .lang-switch button:hover { color: var(--text); }
+    .lang-switch button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); }
+
+    /* ---------- Hero ---------- */
+    .hero { padding: 100px 0 80px; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; inset: -40% -20% auto auto;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, color-mix(in srgb, var(--accent) 25%, transparent), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: center; position: relative; }
+    .tag {
+      display: inline-block; font-size: .85rem; color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 12%, transparent);
+      padding: 6px 12px; border-radius: 999px; margin-bottom: 18px;
+    }
+    .hero h1 { overflow-wrap: break-word; font-size: clamp(2.2rem, 6vw, 3.6rem); line-height: 1.1; font-weight: 800; margin-bottom: 18px; }
+    .gradient {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero p { color: var(--muted); font-size: 1.1rem; max-width: 560px; margin-bottom: 30px; }
+    .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px;
+      border-radius: 10px; font-weight: 600; font-size: .95rem; transition: transform .15s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: #fff; box-shadow: var(--shadow); }
+    .btn-ghost { border: 1px solid var(--border); color: var(--text); }
+    .avatar {
+      width: 100%; max-width: 320px; aspect-ratio: 1; margin-left: auto;
+      border-radius: 50%; padding: 6px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    }
+    .avatar-inner {
+      width: 100%; height: 100%; border-radius: 50%; background: var(--bg-alt);
+      display: grid; place-items: center; font-size: 5rem; font-weight: 800; color: var(--muted);
+    }
+
+    /* ---------- Sections ---------- */
+    section { padding: 90px 0; }
+    section:nth-of-type(even) { background: var(--bg-alt); }
+    .section-title { font-size: clamp(1.7rem, 4vw, 2.3rem); font-weight: 800; margin-bottom: 8px; }
+    .section-sub { color: var(--muted); margin-bottom: 44px; }
+    .section-title .mono { color: var(--accent); font-size: .7em; margin-right: 8px; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; }
+    .about-text p { margin-bottom: 16px; color: var(--muted); }
+    .about-text strong { color: var(--text); }
+    .facts { display: grid; gap: 14px; }
+    .fact {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 18px 20px; display: flex; gap: 14px; align-items: center;
+    }
+    .fact .ico { font-size: 1.5rem; }
+    .fact small { color: var(--muted); display: block; font-size: .8rem; }
+    .fact b { font-weight: 600; }
+
+    /* Skills */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 20px; }
+    .skill-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 24px;
+    }
+    .skill-card h3 { font-size: 1.05rem; margin-bottom: 16px; display: flex; gap: 10px; align-items: center; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      font-size: .85rem; padding: 6px 12px; border-radius: 8px;
+      background: var(--bg-alt); border: 1px solid var(--border); color: var(--text);
+    }
+    .bars { margin-top: 40px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 18px 40px; }
+    .bar-label { display: flex; justify-content: space-between; font-size: .9rem; margin-bottom: 6px; }
+    .bar-label span:last-child { color: var(--muted); }
+    .bar { height: 8px; border-radius: 99px; background: var(--border); overflow: hidden; }
+    .bar > div {
+      height: 100%; width: 0; border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition: width 1.2s ease;
+    }
+
+    /* Projects */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 22px; }
+    .project {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; display: flex; flex-direction: column;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+    }
+    .project:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--accent); }
+    .project-thumb {
+      height: 150px; display: grid; place-items: center; font-size: 3rem;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 30%, var(--card)), color-mix(in srgb, var(--accent-2) 30%, var(--card)));
+    }
+    .project-body { padding: 22px; display: flex; flex-direction: column; flex: 1; }
+    .project-body h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .project-body p { color: var(--muted); font-size: .93rem; margin-bottom: 16px; flex: 1; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .project-tags span { font-size: .75rem; color: var(--accent); font-family: "JetBrains Mono", monospace; }
+    .project-links { display: flex; gap: 16px; font-size: .9rem; font-weight: 600; }
+
+    /* Contact */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; }
+    .contact-list { display: grid; gap: 14px; align-content: start; }
+    .contact-item {
+      display: flex; gap: 14px; align-items: center; padding: 16px 18px;
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      color: var(--text); transition: border-color .2s; word-break: break-word;
+    }
+    .contact-item:hover { border-color: var(--accent); }
+    .contact-item small { display: block; color: var(--muted); font-size: .8rem; }
+    form {
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 26px; display: grid; gap: 16px;
+    }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    label { font-size: .85rem; color: var(--muted); display: block; margin-bottom: 6px; }
+    input, textarea {
+      width: 100%; padding: 12px 14px; border-radius: 10px; font: inherit; font-size: 16px;
+      background: var(--bg); color: var(--text); border: 1px solid var(--border); outline: none;
+    }
+    input:focus, textarea:focus { border-color: var(--accent); }
+    textarea { min-height: 130px; resize: vertical; }
+    button[type="submit"] { border: none; cursor: pointer; justify-self: start; font: inherit; font-weight: 600; }
+    .form-msg { font-size: .9rem; color: var(--accent); min-height: 1.2em; }
+
+    footer { border-top: 1px solid var(--border); padding: 28px 0; text-align: center; color: var(--muted); font-size: .9rem; }
+
+    /* Κρυφό οπτικά, ορατό σε screen readers */
+    .sr-only {
+      position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    }
+
+    /* ---------- Chatbot ---------- */
+    .chat-fab {
+      position: fixed; right: 20px; bottom: 20px; z-index: 200;
+      width: 56px; height: 56px; border-radius: 50%; border: none; cursor: pointer;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff;
+      font-size: 1.5rem; display: grid; place-items: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, .3); transition: transform .15s;
+    }
+    .chat-fab:hover { transform: scale(1.06); }
+    .chat-panel {
+      position: fixed; right: 20px; bottom: 88px; z-index: 200;
+      width: min(380px, calc(100vw - 40px));
+      height: min(560px, calc(100vh - 120px)); height: min(560px, calc(100dvh - 120px));
+      display: flex; flex-direction: column; overflow: hidden;
+      background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .35);
+    }
+    .chat-panel[hidden] { display: none; }
+    .chat-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      padding: 12px 14px 12px 16px; border-bottom: 1px solid var(--border); background: var(--bg-alt);
+    }
+    .chat-head h2 { font-size: 1rem; font-weight: 700; line-height: 1.3; }
+    .chat-head small { display: block; color: var(--muted); font-size: .78rem; line-height: 1.4; }
+    .chat-head .icon-btn { flex-shrink: 0; width: 44px; height: 44px; font-size: 1rem; }
+    .chat-log {
+      flex: 1; overflow-y: auto; overscroll-behavior: contain;
+      padding: 16px; display: flex; flex-direction: column; gap: 10px;
+    }
+    .msg {
+      max-width: 85%; padding: 10px 14px; border-radius: 14px;
+      font-size: .92rem; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere;
+    }
+    .msg.bot { align-self: flex-start; background: var(--bg-alt); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
+    .msg.user { align-self: flex-end; background: var(--accent); color: var(--on-accent); border-bottom-right-radius: 4px; }
+    .msg.error { border-color: color-mix(in srgb, var(--danger) 55%, var(--border)); }
+    .msg.typing { display: flex; gap: 5px; align-items: center; padding: 14px 16px; }
+    .msg.typing i {
+      width: 7px; height: 7px; border-radius: 50%; background: var(--muted);
+      animation: chatDot 1.2s infinite ease-in-out;
+    }
+    .msg.typing i:nth-child(3) { animation-delay: .15s; }
+    .msg.typing i:nth-child(4) { animation-delay: .3s; }
+    @keyframes chatDot { 0%, 80%, 100% { opacity: .3; transform: none; } 40% { opacity: 1; transform: translateY(-3px); } }
+    .chat-suggest { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 16px 12px; }
+    .chat-suggest[hidden] { display: none; }
+    .chat-suggest button {
+      font: inherit; font-size: .82rem; text-align: left; cursor: pointer;
+      min-height: 44px; padding: 7px 14px; border-radius: 999px; background: none;
+      border: 1px solid var(--border); color: var(--accent); transition: border-color .2s;
+    }
+    .chat-suggest button:hover { border-color: var(--accent); }
+    .chat-form {
+      display: flex; gap: 8px; padding: 12px; border: 0; border-top: 1px solid var(--border);
+      border-radius: 0; background: var(--card);
+    }
+    .chat-form input { flex: 1; min-width: 0; padding: 10px 12px; }
+    /* .chat-form μπροστά: να νικά τον γενικό κανόνα button[type="submit"] */
+    .chat-form .chat-send {
+      flex-shrink: 0; width: 44px; border: none; border-radius: 10px; cursor: pointer;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; font-size: 1.1rem;
+    }
+    .chat-note { padding: 0 12px 10px; font-size: .72rem; color: var(--muted); text-align: center; background: var(--card); }
+
+    /* Reveal animation */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s, transform .7s; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .msg.typing i { animation: none; opacity: .6; }
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 860px) {
+      .hero { padding: 60px 0 60px; }
+      .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .avatar { order: -1; max-width: 180px; margin: 0 auto 10px; }
+      .avatar-inner { font-size: 3rem; }
+      .hero-text { text-align: center; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .btns { justify-content: center; }
+      section { padding: 64px 0; }
+    }
+    @media (max-width: 720px) {
+      .menu-btn { display: grid; }
+      .nav-links {
+        position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; gap: 0; background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        max-height: 0; overflow: hidden; transition: max-height .3s ease;
+      }
+      .nav-links.open { max-height: 320px; }
+      .nav-links li { width: 100%; }
+      .nav-links a { display: block; padding: 14px 20px; font-size: 1rem; }
+      .row { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      button[type="submit"] { justify-self: stretch; justify-content: center; }
+      /* Χώρος ώστε το κουμπί του chat να μην καλύπτει το footer */
+      footer { padding-bottom: 92px; }
+    }
+    /* Chat ως bottom sheet σε κινητά */
+    @media (max-width: 480px) {
+      .chat-fab { right: 16px; bottom: 16px; }
+      .chat-fab[aria-expanded="true"] { display: none; }
+      .chat-panel {
+        right: 0; left: 0; bottom: 0; width: 100%;
+        height: calc(100vh - 56px); height: calc(100dvh - 56px);
+        border-radius: var(--radius) var(--radius) 0 0; border-bottom: 0;
+      }
+      .msg { max-width: 90%; }
+    }
+    /* Μικρά κινητά (360px και κάτω) */
+    @media (max-width: 400px) {
+      .container { padding: 0 16px; }
+      .logo { font-size: 1.15rem; }
+      .logo-full { display: none; }
+      .logo-short { display: inline; }
+      .nav-actions { gap: 6px; }
+      .icon-btn { width: 36px; height: 36px; font-size: 1rem; }
+      .lang-switch { height: 36px; }
+      .lang-switch button { width: 30px; }
+      .hero { padding: 40px 0 48px; }
+      .hero h1 { font-size: clamp(1.7rem, 9vw, 2.2rem); }
+      .hero p { font-size: 1rem; }
+      .btns .btn { flex: 1 1 100%; justify-content: center; }
+      section { padding: 52px 0; }
+      .section-sub { margin-bottom: 32px; }
+      .fact, .skill-card, .contact-item { padding: 16px; }
+      .project-body { padding: 18px; }
+      form { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="container">
+      <a href="#" class="logo" data-i18n="logo">&lt;<span class="logo-full">Μάρθα Χαραλαμπίδου</span><span class="logo-short">ΜΧ</span><span>/</span>&gt;</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about" data-i18n="nav.about">Σχετικά</a></li>
+        <li><a href="#skills" data-i18n="nav.skills">Δεξιότητες</a></li>
+        <li><a href="#projects" data-i18n="nav.projects">Εργασίες</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Επικοινωνία</a></li>
+      </ul>
+      <div class="nav-actions">
+        <div class="lang-switch" id="langSwitch" role="group" data-i18n-aria="aria.lang" aria-label="Γλώσσα">
+          <button type="button" data-lang="el" lang="el" aria-label="Ελληνικά" aria-pressed="true">ΕΛ</button>
+          <button type="button" data-lang="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
+        </div>
+        <button class="icon-btn" id="themeBtn" data-i18n-aria="aria.theme" aria-label="Αλλαγή θέματος">🌙</button>
+        <button class="icon-btn menu-btn" id="menuBtn" data-i18n-aria="aria.menu" aria-label="Μενού" aria-expanded="false">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ===== HERO ===== -->
+    <div class="hero">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <span class="tag mono" data-i18n="hero.tag">👋 Γεια σου, είμαι η</span>
+          <h1 data-i18n="hero.title">Μάρθα Χαραλαμπίδου<br><span class="gradient">Φοιτήτρια Πληροφορικής</span></h1>
+          <p data-i18n="hero.text">Σπουδάζω στο Τμήμα Πληροφορικής του Αριστοτελείου Πανεπιστημίου Θεσσαλονίκης. Μου αρέσει να χτίζω εφαρμογές που λύνουν πραγματικά προβλήματα.</p>
+          <div class="btns">
+            <a href="#projects" class="btn btn-primary" data-i18n="hero.cta1">Δες τις εργασίες μου →</a>
+            <a href="#contact" class="btn btn-ghost" data-i18n="hero.cta2">Επικοινωνία</a>
+          </div>
+        </div>
+        <div class="avatar" aria-hidden="true">
+          <!-- Αντικατέστησε με: <img src="photo.jpg" alt="..." style="border-radius:50%;width:100%;height:100%;object-fit:cover"> -->
+          <div class="avatar-inner" data-i18n="avatar">ΜΧ</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== ABOUT ===== -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title reveal" data-i18n="about.title"><span class="mono">01.</span>Λίγα λόγια για μένα</h2>
+        <p class="section-sub reveal" data-i18n="about.sub">Ποια είμαι και τι με ενδιαφέρει</p>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p data-i18n="about.p1">Είμαι <strong>φοιτήτρια στο Τμήμα Πληροφορικής του ΑΠΘ</strong> με ιδιαίτερο ενδιαφέρον για την ανάπτυξη λογισμικού, τις διαδικτυακές εφαρμογές και την τεχνητή νοημοσύνη.</p>
+            <p data-i18n="about.p2">Κατά τη διάρκεια των σπουδών μου έχω δουλέψει σε εργασίες που καλύπτουν από <strong>αλγορίθμους και δομές δεδομένων</strong> μέχρι <strong>βάσεις δεδομένων</strong> και <strong>τεχνολογία λογισμικού</strong>, συχνά σε ομάδες.</p>
+            <p data-i18n="about.p3">Στον ελεύθερό μου χρόνο πειραματίζομαι με side projects, συμμετέχω σε hackathons και μαθαίνω νέες τεχνολογίες. Αναζητώ ευκαιρίες για <strong>πρακτική άσκηση</strong> όπου θα μπορώ να μάθω και να συνεισφέρω.</p>
+          </div>
+          <div class="facts reveal">
+            <div class="fact"><span class="ico">🎓</span><div><small data-i18n="fact.studies">Σπουδές</small><b data-i18n="fact.studiesV">Πληροφορική, ΑΠΘ</b></div></div>
+            <div class="fact"><span class="ico">📅</span><div><small data-i18n="fact.year">Έτος</small><b data-i18n="fact.yearV">5ο έτος</b></div></div>
+            <div class="fact"><span class="ico">📍</span><div><small data-i18n="fact.location">Τοποθεσία</small><b data-i18n="fact.locationV">Θεσσαλονίκη</b></div></div>
+            <div class="fact"><span class="ico">🗣️</span><div><small data-i18n="fact.langs">Γλώσσες</small><b data-i18n="fact.langsV">Ελληνικά, Αγγλικά (Β2), Γαλλικά (Β1)</b></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title reveal" data-i18n="skills.title"><span class="mono">02.</span>Δεξιότητες</h2>
+        <p class="section-sub reveal" data-i18n="skills.sub">Τεχνολογίες και εργαλεία με τα οποία δουλεύω</p>
+        <div class="skills-grid">
+          <div class="skill-card reveal">
+            <h3 data-i18n="skills.langs">💻 Γλώσσες</h3>
+            <div class="chips"><span class="chip">Java</span><span class="chip">Python</span><span class="chip">C / C++</span><span class="chip">JavaScript</span><span class="chip">SQL</span><span class="chip">Assembly</span></div>
+          </div>
+          <div class="skill-card reveal">
+            <h3>🌐 Web</h3>
+            <div class="chips"><span class="chip">HTML</span><span class="chip">Node.js</span><span class="chip">REST APIs</span></div>
+          </div>
+          <div class="skill-card reveal">
+            <h3 data-i18n="skills.data">🗄️ Δεδομένα & AI</h3>
+            <div class="chips"><span class="chip">MySQL</span><span class="chip">NumPy</span></div>
+          </div>
+          <div class="skill-card reveal">
+            <h3 data-i18n="skills.tools">🛠️ Εργαλεία</h3>
+            <div class="chips"><span class="chip">Git / GitHub</span><span class="chip">Linux</span><span class="chip">VS Code</span><span class="chip">IntelliJ</span></div>
+          </div>
+        </div>
+
+        <div class="bars reveal">
+          
+          <div><div class="bar-label"><span>Python</span><span>80%</span></div><div class="bar"><div data-w="80"></div></div></div>
+          <div><div class="bar-label"><span>C / C++</span><span>80%</span></div><div class="bar"><div data-w="80"></div></div></div>
+          <div><div class="bar-label"><span>Java</span><span>75%</span></div><div class="bar"><div data-w="75"></div></div></div>
+          
+          <div><div class="bar-label"><span>Web (HTML/CSS/JS)</span><span>75%</span></div><div class="bar"><div data-w="75"></div></div></div>
+          <div><div class="bar-label"><span>Assembly</span><span>70%</span></div><div class="bar"><div data-w="70"></div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title reveal" data-i18n="projects.title"><span class="mono">03.</span>Εργασίες</h2>
+        <p class="section-sub reveal" data-i18n="projects.sub">Επιλεγμένες εργασίες από τις σπουδές και προσωπικά projects</p>
+
+        <div class="projects-grid">
+          <article class="project reveal">
+            <div class="project-thumb">🎮</div>
+            <div class="project-body">
+              <h3 data-i18n="p1.title">Παιχνίδι Scrabble σε Python</h3>
+              <p data-i18n="p1.desc">Απλοποιημένη εκδοχή του παιχνιδιού Scrabble.</p>
+              <div class="project-tags"><span>#Python</span></div>
+              <div class="project-links"><a href="https://github.com/marthachd/Python-Scrabble-Project" target="_blank" rel="noopener">GitHub ↗</a></div>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-thumb">⚙️</div>
+            <div class="project-body">
+              <h3 data-i18n="p2.title">Πρωτόκολλο Ανταλλαγής Κλειδιών Diffie-Hellman</h3>
+              <p data-i18n="p2.desc">Πρόγραμμα σε Python που υλοποιεί το πρωτόκολλο ανταλλαγής Diffie Hellman για g=3, p=101, a=77, b=91.</p>
+              <div class="project-tags"><span>#Python</span><span data-i18n="tag.crypto">#Κρυπτογραφία</span></div>
+              <div class="project-links"><a href="https://github.com/marthachd/Diffie-Hellman-Key-Exchange-Protocol-Assignment" target="_blank" rel="noopener">GitHub ↗</a></div>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-thumb">⚙️</div>
+            <div class="project-body">
+              <h3 data-i18n="p3.title">Υλοποίηση Βιβλιοθήκης Δομών Δεδομένων σε C++</h3>
+              <p data-i18n="p3.desc">Ομαδικό project που αφορά την δημιουργία μιας βιβλιοθήκης η οποία υποστηρίζει τις ακόλουθες δομές δεδομένων: σωρός ελαχίστων, σωρός μεγίστων ,δυαδικό δέντρο αναζήτησης AVL, γράφημα χωρίς κατευθύνσεις αλλά με βάρη στις ακμές , πίνακας κερματισμού υλοποιημένες στην γλώσσα προγραμματισμού C++.</p>
+              <div class="project-tags"><span>#C++</span></div>
+              <div class="project-links"><a href="https://github.com/marthachd/Implementation-of-Basic-Data-Structures" target="_blank" rel="noopener">GitHub ↗</a></div>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-thumb">⚙️</div>
+            <div class="project-body">
+              <h3 data-i18n="p4.title">Η Επίθεση του Wiener στο RSA</h3>
+              <p data-i18n="p4.desc">Επίθεση του Wiener για την εύρεση του ιδιωτικού εκθέτη d, αξιοποιώντας τα συνεχόμενα κλάσματα του λόγου e/N. Αφού υπολογιστεί το ιδιωτικό κλειδί, γίνεται αποκρυπτογράφηση του κρυπτοκειμένου μπλοκ προς μπλοκ.</p>
+              <div class="project-tags"><span>#Python</span><span data-i18n="tag.crypto">#Κρυπτογραφία</span></div>
+              <div class="project-links"><a href="https://github.com/marthachd/Wiener-s-Attack-on-RSA-Assignment" target="_blank" rel="noopener">GitHub ↗</a></div>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-thumb">⚙️</div>
+            <div class="project-body">
+              <h3 data-i18n="p5.title">Animation σε x86 Assembly με Χρήση της Μνήμης Βίντεο</h3>
+              <p data-i18n="p5.desc">Υλοποίηση animation σε 16-bit x86 Assembly, με άμεση πρόσβαση στη μνήμη βίντεο, χρονισμό μέσω timer interrupt και κίνηση ενός χαρακτήρα με μεταβολή χρώματος και τυχαία επέκταση.</p>
+              <div class="project-tags"><span>#Assembly</span></div>
+              <div class="project-links"><a href="https://github.com/marthachd/x86-Assembly-Animation-Using-Video-Memory-Assignment" target="_blank" rel="noopener">GitHub ↗</a></div>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <div class="project-thumb">🌍</div>
+            <div class="project-body">
+              <h3 data-i18n="p6.title">Προσωπικό Portfolio</h3>
+              <p data-i18n="p6.desc">Αυτή η ιστοσελίδα! Responsive σχεδίαση, σκούρο/φωτεινό θέμα και ελληνική/αγγλική έκδοση σε καθαρό HTML/CSS/JS.</p>
+              <div class="project-tags"><span>#HTML</span><span>#CSS</span><span>#JavaScript</span></div>
+              <div class="project-links"><a href="https://github.com/marthax22/portfolio" target="_blank" rel="noopener">GitHub ↗</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title reveal" data-i18n="contact.title"><span class="mono">04.</span>Επικοινωνία</h2>
+        <p class="section-sub reveal" data-i18n="contact.sub">Θα χαρώ να μιλήσουμε για συνεργασίες, πρακτική ή απλώς τεχνολογία!</p>
+        <div class="contact-grid">
+          <div class="contact-list reveal">
+            <a class="contact-item" href="mailto:marthacd@csd.auth.gr"><span>✉️</span><div><small>Email</small>marthacd@csd.auth.gr</div></a>
+            <a class="contact-item" href="https://github.com/marthax22" target="_blank" rel="noopener"><span>🐙</span><div><small>GitHub 1</small>github.com/marthax22</div></a>
+            <a class="contact-item" href="https://github.com/marthachd" target="_blank" rel="noopener"><span>🐙</span><div><small>GitHub 2</small>github.com/marthachd</div></a>
+            
+             <div class="contact-item"><span>📍</span><div><small data-i18n="fact.location">Τοποθεσία</small><span data-i18n="contact.locationV">Θεσσαλονίκη, Ελλάδα</span></div></div>
+          </div>
+
+          <form id="contactForm" class="reveal">
+            <div class="row">
+              <div><label for="name" data-i18n="form.name">Όνομα</label><input id="name" name="name" required></div>
+              <div><label for="email">Email</label><input id="email" name="email" type="email" required></div>
+            </div>
+            <div><label for="subject" data-i18n="form.subject">Θέμα</label><input id="subject" name="subject"></div>
+            <div><label for="message" data-i18n="form.message">Μήνυμα</label><textarea id="message" name="message" required></textarea></div>
+            <button type="submit" class="btn btn-primary" data-i18n="form.send">Αποστολή ✈️</button>
+            <div class="form-msg" id="formMsg" role="status"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> <span data-i18n="footer">Μάρθα Χαραλαμπίδου · Τμήμα Πληροφορικής ΑΠΘ</span></div>
+  </footer>
+
+  <!-- ===== CHATBOT ===== -->
+  <button type="button" class="chat-fab" id="chatFab" aria-expanded="false" aria-controls="chatPanel" aria-label="Άνοιγμα συνομιλίας">💬</button>
+  <div class="chat-panel" id="chatPanel" role="dialog" aria-labelledby="chatTitle" hidden>
+    <div class="chat-head">
+      <div>
+        <h2 id="chatTitle" data-i18n="chat.title">Ρώτα για τη Μάρθα</h2>
+        <small data-i18n="chat.sub">AI βοηθός για τις σπουδές, τις δεξιότητες και τις εργασίες της</small>
+      </div>
+      <button type="button" class="icon-btn" id="chatClose" data-i18n-aria="aria.chatClose" aria-label="Κλείσιμο συνομιλίας">✕</button>
+    </div>
+    <div class="chat-log" id="chatLog" role="log" aria-live="polite">
+      <div class="msg bot" data-i18n="chat.hello">Γεια! Είμαι ο βοηθός αυτού του portfolio. Ρώτα με ό,τι θέλεις για τη Μάρθα: σπουδές, δεξιότητες ή εργασίες.</div>
+    </div>
+    <!-- Εκτός του live region, ώστε η αλλαγή γλώσσας να μην ανακοινώνεται -->
+    <div class="chat-suggest" id="chatSuggest">
+      <button type="button" data-i18n="chat.q1">Τι σπουδάζει η Μάρθα;</button>
+      <button type="button" data-i18n="chat.q2">Ποιες γλώσσες προγραμματισμού ξέρει;</button>
+      <button type="button" data-i18n="chat.q3">Πες μου για τις εργασίες της στην κρυπτογραφία</button>
+    </div>
+    <form class="chat-form" id="chatForm" novalidate>
+      <label for="chatInput" class="sr-only" data-i18n="chat.label">Η ερώτησή σου</label>
+      <input id="chatInput" maxlength="500" autocomplete="off" enterkeyhint="send" placeholder="Γράψε μια ερώτηση…">
+      <button type="submit" class="chat-send" id="chatSend" data-i18n-aria="aria.chatSend" aria-label="Αποστολή ερώτησης">➤</button>
+    </form>
+    <p class="chat-note" data-i18n="chat.note">Οι απαντήσεις δημιουργούνται από AI και μπορεί να έχουν λάθη.</p>
+  </div>
+
+  <script>
+    // Email παραλήπτη για τη φόρμα επικοινωνίας
+    const CONTACT_EMAIL = "marthacd@csd.auth.gr";
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile menu
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+    menuBtn.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", open);
+      menuBtn.textContent = open ? "✕" : "☰";
+    });
+    navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+      menuBtn.textContent = "☰";
+    }));
+
+    // Theme toggle (με αποθήκευση προτίμησης)
+    const root = document.documentElement;
+    const themeBtn = document.getElementById("themeBtn");
+    const setTheme = t => {
+      root.setAttribute("data-theme", t);
+      themeBtn.textContent = t === "light" ? "🌙" : "☀️";
+      try { localStorage.setItem("theme", t); } catch (e) {}
+    };
+    let saved = null;
+    try { saved = localStorage.getItem("theme"); } catch (e) {}
+    setTheme(saved || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark"));
+    themeBtn.addEventListener("click", () => setTheme(root.getAttribute("data-theme") === "light" ? "dark" : "light"));
+
+    // Reveal on scroll + skill bars
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("visible");
+        e.target.querySelectorAll(".bar > div").forEach(b => b.style.width = b.dataset.w + "%");
+        io.unobserve(e.target);
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+    // Active nav link
+    const sections = document.querySelectorAll("section[id]");
+    const navIO = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.querySelectorAll("a").forEach(a =>
+            a.classList.toggle("active", a.getAttribute("href") === "#" + e.target.id));
+        }
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    sections.forEach(s => navIO.observe(s));
+
+    // ---------- Γλώσσα (Ελληνικά / English) ----------
+    const EN = {
+      "logo": '&lt;<span class="logo-full">Martha Charalampidou</span><span class="logo-short">MC</span><span>/</span>&gt;',
+      "nav.about": "About", "nav.skills": "Skills", "nav.projects": "Projects", "nav.contact": "Contact",
+      "aria.theme": "Toggle theme", "aria.menu": "Menu", "aria.lang": "Language",
+      "hero.tag": "👋 Hi, I'm",
+      "hero.title": 'Martha Charalampidou<br><span class="gradient">Informatics Student</span>',
+      "hero.text": "I study at the School of Informatics of the Aristotle University of Thessaloniki. I love building applications that solve real problems.",
+      "hero.cta1": "See my projects →", "hero.cta2": "Contact me",
+      "avatar": "MC",
+      "about.title": '<span class="mono">01.</span>About me',
+      "about.sub": "Who I am and what I'm interested in",
+      "about.p1": "I am an <strong>Informatics student at the Aristotle University of Thessaloniki (AUTh)</strong> with a strong interest in software development, web applications and artificial intelligence.",
+      "about.p2": "During my studies I have worked on assignments ranging from <strong>algorithms and data structures</strong> to <strong>databases</strong> and <strong>software engineering</strong>, often as part of a team.",
+      "about.p3": "In my free time I experiment with side projects, take part in hackathons and learn new technologies. I am looking for <strong>internship</strong> opportunities where I can learn and contribute.",
+      "fact.studies": "Studies", "fact.studiesV": "Informatics, AUTh",
+      "fact.year": "Year", "fact.yearV": "5th year",
+      "fact.location": "Location", "fact.locationV": "Thessaloniki",
+      "fact.langs": "Languages", "fact.langsV": "Greek (native), English (B2), French (B1)",
+      "skills.title": '<span class="mono">02.</span>Skills',
+      "skills.sub": "Technologies and tools I work with",
+      "skills.langs": "💻 Languages", "skills.data": "🗄️ Data & AI", "skills.tools": "🛠️ Tools",
+      "projects.title": '<span class="mono">03.</span>Projects',
+      "projects.sub": "Selected coursework and personal projects",
+      "tag.crypto": "#Cryptography",
+      "p1.title": "Scrabble Game in Python",
+      "p1.desc": "A simplified version of the game Scrabble.",
+      "p2.title": "Diffie Hellman Key Exchange Protocol",
+      "p2.desc": "A Python program implementing the Diffie-Hellman key exchange protocol for g=3, p=101, a=77, b=91.",
+      "p3.title": "Data Structures Library in C++",
+      "p3.desc": "Team project building a C++ library that supports the following data structures: min heap, max heap, AVL binary search tree, undirected weighted graph and hash table.",
+      "p4.title": "Wiener's Attack on RSA",
+      "p4.desc": "Wiener's attack for recovering the private exponent d using the continued fraction expansion of e/N. Once the private key is found, the ciphertext is decrypted block by block.",
+      "p5.title": "x86 Assembly Animation Using Video Memory",
+      "p5.desc": "An animation in 16-bit x86 Assembly with direct access to video memory, timing via the timer interrupt, and a moving character that changes color and expands randomly.",
+      "p6.title": "Personal Portfolio",
+      "p6.desc": "This very website! Responsive design, dark/light theme and Greek/English versions in plain HTML/CSS/JS.",
+      "contact.title": '<span class="mono">04.</span>Contact',
+      "contact.sub": "I'd be happy to talk about collaborations, internships or just technology!",
+      "contact.locationV": "Thessaloniki, Greece",
+      "form.name": "Name", "form.subject": "Subject", "form.message": "Message", "form.send": "Send ✈️",
+      "footer": "Martha Charalampidou · School of Informatics, AUTh",
+      "meta.title": "Portfolio | Martha Charalampidou",
+      "meta.desc": "Personal portfolio of an Informatics student at AUTh",
+      "mail.subject": "Contact from portfolio", "mail.name": "Name",
+      "mail.sent": "Opening your email client… Thank you for your message!",
+      "val.required": "Please fill in this field.",
+      "val.email": "Please enter a valid email address.",
+      "chat.title": "Ask about Martha",
+      "chat.sub": "AI assistant for her studies, skills and projects",
+      "chat.hello": "Hi! I'm the assistant of this portfolio. Ask me anything about Martha: her studies, skills or projects.",
+      "chat.q1": "What does Martha study?",
+      "chat.q2": "Which programming languages does she know?",
+      "chat.q3": "Tell me about her cryptography projects",
+      "chat.label": "Your question",
+      "chat.note": "Answers are generated by AI and may contain mistakes.",
+      "chat.ph": "Type a question…",
+      "chat.typing": "The assistant is typing…",
+      "chat.err.busy": "The assistant is busy right now. Please try again in a moment.",
+      "chat.err.refusal": "I can't answer that. Ask me something about Martha and her work.",
+      "chat.err.long": "Your question is too long (max 500 characters).",
+      "chat.err.offline": "Couldn't reach the assistant. Check your connection and try again.",
+      "chat.err.generic": "Something went wrong. Please try again, or use the contact form.",
+      "aria.chatOpen": "Open chat", "aria.chatClose": "Close chat", "aria.chatSend": "Send question"
+    };
+    const EL = {
+      "meta.title": document.title,
+      "meta.desc": document.querySelector('meta[name="description"]').content,
+      "mail.subject": "Επικοινωνία από το portfolio", "mail.name": "Όνομα",
+      "mail.sent": "Ανοίγει το πρόγραμμα email σου… Ευχαριστώ για το μήνυμα!",
+      "val.required": "Συμπλήρωσε αυτό το πεδίο.",
+      "val.email": "Γράψε ένα έγκυρο email.",
+      "chat.ph": "Γράψε μια ερώτηση…",
+      "chat.typing": "Ο βοηθός γράφει…",
+      "chat.err.busy": "Ο βοηθός είναι απασχολημένος αυτή τη στιγμή. Δοκίμασε ξανά σε λίγο.",
+      "chat.err.refusal": "Δεν μπορώ να απαντήσω σε αυτό. Ρώτα με κάτι για τη Μάρθα και τη δουλειά της.",
+      "chat.err.long": "Η ερώτηση είναι πολύ μεγάλη (έως 500 χαρακτήρες).",
+      "chat.err.offline": "Δεν ήταν δυνατή η σύνδεση με τον βοηθό. Έλεγξε τη σύνδεσή σου και δοκίμασε ξανά.",
+      "chat.err.generic": "Κάτι πήγε στραβά. Δοκίμασε ξανά ή χρησιμοποίησε τη φόρμα επικοινωνίας.",
+      "aria.chatOpen": "Άνοιγμα συνομιλίας"
+    };
+    // Τα ελληνικά κείμενα διαβάζονται από το ίδιο το HTML
+    document.querySelectorAll("[data-i18n]").forEach(el => EL[el.dataset.i18n] = el.innerHTML);
+    document.querySelectorAll("[data-i18n-aria]").forEach(el => EL[el.dataset.i18nAria] = el.getAttribute("aria-label"));
+
+    let lang = "el";
+    const t = k => (lang === "en" ? EN : EL)[k];
+    const langSwitch = document.getElementById("langSwitch");
+    const contactForm = document.getElementById("contactForm");
+    const setLang = l => {
+      lang = l;
+      root.setAttribute("lang", l);
+      document.querySelectorAll("[data-i18n]").forEach(el => el.innerHTML = t(el.dataset.i18n));
+      document.querySelectorAll("[data-i18n-aria]").forEach(el => el.setAttribute("aria-label", t(el.dataset.i18nAria)));
+      document.title = t("meta.title");
+      document.querySelector('meta[name="description"]').content = t("meta.desc");
+      langSwitch.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === l));
+      // Καθαρίζει τα μηνύματα επικύρωσης της προηγούμενης γλώσσας
+      contactForm.querySelectorAll("input, textarea").forEach(f => f.setCustomValidity(""));
+      document.getElementById("formMsg").textContent = "";
+      // Chat: placeholder και aria-label του κουμπιού (εξαρτάται από το αν είναι ανοιχτό)
+      document.getElementById("chatInput").placeholder = t("chat.ph");
+      const fab = document.getElementById("chatFab");
+      fab.setAttribute("aria-label", t(fab.getAttribute("aria-expanded") === "true" ? "aria.chatClose" : "aria.chatOpen"));
+      try { localStorage.setItem("lang", l); } catch (e) {}
+    };
+    let savedLang = null;
+    try { savedLang = localStorage.getItem("lang"); } catch (e) {}
+    if (savedLang === "en" || new URLSearchParams(location.search).get("lang") === "en") setLang("en");
+    langSwitch.addEventListener("click", e => {
+      const b = e.target.closest("button[data-lang]");
+      if (b && b.dataset.lang !== lang) setLang(b.dataset.lang);
+    });
+
+    // Μηνύματα επικύρωσης στη γλώσσα της σελίδας (όχι του browser)
+    contactForm.addEventListener("invalid", e => {
+      const f = e.target;
+      f.setCustomValidity(f.validity.valueMissing ? t("val.required") : f.validity.typeMismatch ? t("val.email") : "");
+    }, true);
+    contactForm.addEventListener("input", e => e.target.setCustomValidity(""));
+
+    // Contact form -> ανοίγει το email client
+    contactForm.addEventListener("submit", e => {
+      e.preventDefault();
+      const f = e.target;
+      const subject = f.subject.value || t("mail.subject");
+      const body = `${t("mail.name")}: ${f.name.value}\nEmail: ${f.email.value}\n\n${f.message.value}`;
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      document.getElementById("formMsg").textContent = t("mail.sent");
+      f.reset();
+    });
+
+    // ---------- Chatbot (POST /api/chat) ----------
+    const chatFab = document.getElementById("chatFab");
+    const chatPanel = document.getElementById("chatPanel");
+    const chatLog = document.getElementById("chatLog");
+    const chatForm = document.getElementById("chatForm");
+    const chatInput = document.getElementById("chatInput");
+    const chatSuggest = document.getElementById("chatSuggest");
+    const CHAT_MAX_CHARS = 500;       // ίδιο όριο με τον server
+    const CHAT_MAX_REPLY_CHARS = 600; // ο server κόβει τις απαντήσεις του ιστορικού εκεί
+    const CHAT_TIMEOUT_MS = 20000;    // ο server κόβει στα ~10 δευτ.
+    // Κωδικός σφάλματος του server → κλειδί μηνύματος (οτιδήποτε άλλο → γενικό)
+    const CHAT_ERRORS = { busy: "chat.err.busy", unavailable: "chat.err.busy", refusal: "chat.err.refusal", too_large: "chat.err.long" };
+    const chatHistory = []; // μόνο επιτυχημένες ανταλλαγές (user/assistant εναλλάξ)
+    let chatBusy = false;
+    // Σε κινητά το panel καλύπτει τη σελίδα: η υπόλοιπη σελίδα γίνεται inert
+    const chatSheetMQ = matchMedia("(max-width: 480px)");
+    const pageParts = document.querySelectorAll("header, main, footer");
+    const syncInert = () => {
+      const block = !chatPanel.hidden && chatSheetMQ.matches;
+      pageParts.forEach(p => p.inert = block);
+    };
+    chatSheetMQ.addEventListener("change", syncInert);
+
+    const openChat = open => {
+      chatPanel.hidden = !open;
+      chatFab.setAttribute("aria-expanded", open);
+      chatFab.setAttribute("aria-label", t(open ? "aria.chatClose" : "aria.chatOpen"));
+      chatFab.textContent = open ? "✕" : "💬";
+      syncInert();
+      if (open) {
+        chatLog.scrollTop = chatLog.scrollHeight;
+        chatInput.focus();
+      } else {
+        chatFab.focus();
+      }
+    };
+    chatFab.addEventListener("click", () => openChat(chatPanel.hidden));
+    document.getElementById("chatClose").addEventListener("click", () => openChat(false));
+    document.addEventListener("keydown", e => { if (e.key === "Escape" && !chatPanel.hidden) openChat(false); });
+
+    // Το κείμενο μπαίνει πάντα με textContent (ποτέ ως HTML).
+    // Το lang μένει σωστό για screen readers και μετά από αλλαγή γλώσσας.
+    const addMsg = (text, cls) => {
+      const el = document.createElement("div");
+      el.className = "msg " + cls;
+      el.lang = lang;
+      el.textContent = text;
+      chatLog.appendChild(el);
+      chatLog.scrollTop = chatLog.scrollHeight;
+      return el;
+    };
+    const addTyping = () => {
+      const el = addMsg("", "bot typing");
+      const sr = document.createElement("span");
+      sr.className = "sr-only";
+      sr.textContent = t("chat.typing");
+      el.append(sr, ...[0, 1, 2].map(() => document.createElement("i")));
+      return el;
+    };
+
+    // Ένα αίτημα στο /api/chat → { reply } ή { error, errKey }
+    const requestChat = async messages => {
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), CHAT_TIMEOUT_MS);
+      try {
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ messages, lang }),
+          signal: ctrl.signal
+        });
+        const data = await res.json().catch(() => ({}));
+        // Πρώτα το error: το "refusal" έρχεται με status 200
+        if (data.error) return { error: data.error, errKey: CHAT_ERRORS[data.error] || "chat.err.generic" };
+        if (res.ok && typeof data.reply === "string" && data.reply) return { reply: data.reply };
+        return { errKey: "chat.err.generic" };
+      } catch (e) {
+        // Timeout του browser σημαίνει αργό server, όχι πρόβλημα σύνδεσης
+        return { errKey: e.name === "AbortError" ? "chat.err.busy" : "chat.err.offline" };
+      } finally {
+        clearTimeout(timer);
+      }
+    };
+
+    const sendChat = async raw => {
+      const text = raw.trim();
+      if (!text || chatBusy) return;
+      if (text.length > CHAT_MAX_CHARS) { addMsg(t("chat.err.long"), "bot error"); return; }
+
+      // Χωρίς disabled στο κουμπί: η εστίαση δεν χάνεται, το chatBusy αποτρέπει διπλή αποστολή
+      chatBusy = true;
+      chatSuggest.hidden = true;
+      chatInput.value = "";
+      addMsg(text, "user");
+      const typing = addTyping();
+
+      // Τελευταίες 2 ανταλλαγές + η νέα ερώτηση (ο server κρατά έως 6 μηνύματα)
+      const question = { role: "user", content: text };
+      let res = await requestChat([...chatHistory.slice(-4), question]);
+      // Πολύ μεγάλο ιστορικό: ξεκινά από την αρχή, αλλιώς κάθε επόμενη ερώτηση θα αποτύγχανε
+      if (res.error === "too_large" && chatHistory.length) {
+        chatHistory.length = 0;
+        res = await requestChat([question]);
+      }
+
+      typing.remove();
+      if (res.reply) {
+        chatHistory.push(question, { role: "assistant", content: res.reply.slice(0, CHAT_MAX_REPLY_CHARS) });
+        addMsg(res.reply, "bot");
+      } else {
+        addMsg(t(res.errKey), "bot error");
+      }
+      chatBusy = false;
+      if (!chatPanel.hidden) chatInput.focus();
+    };
+
+    chatForm.addEventListener("submit", e => { e.preventDefault(); sendChat(chatInput.value); });
+    chatSuggest.addEventListener("click", e => {
+      const b = e.target.closest("button");
+      if (b) sendChat(b.textContent);
+    });
+  </script>
+</body>
+</html>
