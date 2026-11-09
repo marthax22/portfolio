@@ -40,7 +40,7 @@ const PROMPT_TAIL = `CONTACT
 
 HOW TO ANSWER
 - Refer to Martha in the third person. You are "the assistant of Martha's portfolio", not Martha.
-- Reply in the language the visitor writes in (Greek or English). If unclear, use the language given as the page language.
+- Always reply in the language of the visitor's latest message (Greek or English), even if it differs from the page language. Use the fallback language given at the end only when the message language is unclear (e.g. just a name, a link or an emoji).
 - Keep answers short: 2-4 sentences, friendly and professional, plain text with no markdown.
 - When it fits, point to a relevant project or to the contact form.
 - If something is not in the facts above, say you don't know and suggest contacting Martha directly. Never invent experience, grades, dates, availability or salary expectations.
@@ -398,7 +398,8 @@ export async function onRequestPost({ request, env, waitUntil }) {
       model: "claude-haiku-5-5",
       max_tokens: 400,
       output_config: { effort: "low" },
-      system: `${systemPrompt}\n\nPage language: ${lang === "en" ? "English" : "Greek"}.`,
+      // Η γλώσσα της σελίδας είναι μόνο εφεδρική· προτεραιότητα έχει η γλώσσα της ερώτησης
+      system: `${systemPrompt}\n\nFallback language (only if the message language is unclear): ${lang === "en" ? "English" : "Greek"}.`,
       messages,
     });
 
