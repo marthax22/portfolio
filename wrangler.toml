@@ -1,3 +1,10 @@
-name = "portfolio"
+name = "portfolio-martha-charalampidou"
 pages_build_output_dir = "public"
 compatibility_date = "2026-11-01"
+
+# Βάση D1 για το rate limiting του /api/chat (10/λεπτό, 50/ημέρα ανά IP).
+# Το database_id το δίνει η εντολή: npx wrangler d1 create chat-rate
+[[d1_databases]]
+binding = "RATE_DB"
+database_name = "chat-rate"
+database_id = "1b7d2b86-035b-487a-8359-e87b53912960"

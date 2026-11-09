@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Προσωπικό portfolio φοιτητή/τριας Πληροφορικής ΑΠΘ">
   <title>Portfolio | Μάρθα Χαραλαμπίδου </title>
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://portfolio-martha-charalampidou.pages.dev/">
+  <meta property="og:title" content="Μάρθα Χαραλαμπίδου | Portfolio">
+  <meta property="og:description" content="Φοιτήτρια Πληροφορικής στο ΑΠΘ. Projects σε Python, C++, Java και web εφαρμογές.">
+  <meta property="og:image" content="https://portfolio-martha-charalampidou.pages.dev/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Μάρθα Χαραλαμπίδου, Φοιτήτρια Πληροφορικής ΑΠΘ">
+  <meta property="og:locale" content="el_GR">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -457,6 +472,7 @@
     </section>
 
     <!-- ===== PROJECTS ===== -->
+    <!-- Τα projects (και τα skills) τα διαβάζει και το chatbot (functions/api/chat.js): προσοχή στα selectors εκεί -->
     <section id="projects">
       <div class="container">
         <h2 class="section-title reveal" data-i18n="projects.title"><span class="mono">03.</span>Εργασίες</h2>
@@ -705,6 +721,8 @@
       "chat.err.long": "Your question is too long (max 500 characters).",
       "chat.err.offline": "Couldn't reach the assistant. Check your connection and try again.",
       "chat.err.generic": "Something went wrong. Please try again, or use the contact form.",
+      "chat.err.rateMin": "You've asked quite a few questions in a short time. Please wait a minute and try again.",
+      "chat.err.rateDay": "You've reached today's question limit. Please try again tomorrow, or use the contact form.",
       "aria.chatOpen": "Open chat", "aria.chatClose": "Close chat", "aria.chatSend": "Send question"
     };
     const EL = {
@@ -721,6 +739,8 @@
       "chat.err.long": "Η ερώτηση είναι πολύ μεγάλη (έως 500 χαρακτήρες).",
       "chat.err.offline": "Δεν ήταν δυνατή η σύνδεση με τον βοηθό. Έλεγξε τη σύνδεσή σου και δοκίμασε ξανά.",
       "chat.err.generic": "Κάτι πήγε στραβά. Δοκίμασε ξανά ή χρησιμοποίησε τη φόρμα επικοινωνίας.",
+      "chat.err.rateMin": "Έκανες αρκετές ερωτήσεις σε λίγο χρόνο. Περίμενε ένα λεπτό και δοκίμασε ξανά.",
+      "chat.err.rateDay": "Έφτασες το ημερήσιο όριο ερωτήσεων. Δοκίμασε ξανά αύριο ή χρησιμοποίησε τη φόρμα επικοινωνίας.",
       "aria.chatOpen": "Άνοιγμα συνομιλίας"
     };
     // Τα ελληνικά κείμενα διαβάζονται από το ίδιο το HTML
@@ -785,7 +805,7 @@
     const CHAT_MAX_REPLY_CHARS = 600; // ο server κόβει τις απαντήσεις του ιστορικού εκεί
     const CHAT_TIMEOUT_MS = 20000;    // ο server κόβει στα ~10 δευτ.
     // Κωδικός σφάλματος του server → κλειδί μηνύματος (οτιδήποτε άλλο → γενικό)
-    const CHAT_ERRORS = { busy: "chat.err.busy", unavailable: "chat.err.busy", refusal: "chat.err.refusal", too_large: "chat.err.long" };
+    const CHAT_ERRORS = { busy: "chat.err.busy", unavailable: "chat.err.busy", refusal: "chat.err.refusal", too_large: "chat.err.long", rate_minute: "chat.err.rateMin", rate_day: "chat.err.rateDay" };
     const chatHistory = []; // μόνο επιτυχημένες ανταλλαγές (user/assistant εναλλάξ)
     let chatBusy = false;
     // Σε κινητά το panel καλύπτει τη σελίδα: η υπόλοιπη σελίδα γίνεται inert
