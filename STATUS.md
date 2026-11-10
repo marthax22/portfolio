@@ -1,6 +1,6 @@
 # Κατάσταση έργου
 
-_Τελευταία ενημέρωση: 2026-11-10 · branch `main` · commits `81412ac` (βιογραφικό, GitHub, δίγλωσσα OG) και το επόμενο (`chat.js`, `STATUS.md`) · χωρίς commit μένει μόνο το `CLAUDE.md`_
+_Τελευταία ενημέρωση: 2026-11-10 · branch `main` · commits `81412ac` (βιογραφικό, GitHub, δίγλωσσα OG), `b1a6f99` (`chat.js`, `STATUS.md`) και το επόμενο (`CLAUDE.md`) · καμία αλλαγή χωρίς commit_
 
 ## Σύνοψη
 
@@ -37,9 +37,9 @@ _Τελευταία ενημέρωση: 2026-11-10 · branch `main` · commits `
 - [x] **Μετάβαση στο GitHub `marthax22`:** οι σύνδεσμοι των projects ελέγχθηκαν και ανοίγουν όλοι (2026-11-10). Δύο repos έχουν άλλο όνομα: `Implementation-of-Basic-Data-Structure`, `Wieners-Attack-on-RSA-Assignment`.
 - [x] Κείμενα Open Graph δίγλωσσα (EL / EN) στα ίδια tags.
 - [ ] **Έλεγχος αγγλικού CV:** να διαβαστεί η μετάφραση πριν το deploy.
-- [x] **Commit:** `public/` και `STATUS.md` στο `81412ac` (pushed στο github.com/marthax22/portfolio), `functions/api/chat.js` στο επόμενο commit.
-- [ ] **Push:** το commit με το `chat.js` δεν έχει γίνει ακόμα push.
-- [ ] **`CLAUDE.md`:** η σημείωση για τα δίγλωσσα OG δεν έχει μπει ακόμα σε commit.
+- [x] **Commit:** `public/` και `STATUS.md` στο `81412ac` (pushed στο github.com/marthax22/portfolio), `functions/api/chat.js` στο `b1a6f99`.
+- [ ] **Push:** τα `b1a6f99` και το commit του `CLAUDE.md` δεν έχουν γίνει ακόμα push.
+- [x] **`CLAUDE.md`:** η σημείωση για τα δίγλωσσα OG μπήκε σε commit.
 - [ ] **Deploy:** οι αλλαγές της 2026-11-10 δεν είναι ακόμα στο production.
 
 ## Χρήσιμες εντολές
