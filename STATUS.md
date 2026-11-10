@@ -1,6 +1,6 @@
 # Κατάσταση έργου
 
-_Τελευταία ενημέρωση: 2026-11-10 · branch `main` · τελευταίο commit `5210672` (υπάρχουν αλλαγές χωρίς commit: βιογραφικό, GitHub, δίγλωσσα OG, βλ. παρακάτω)_
+_Τελευταία ενημέρωση: 2026-11-10 · branch `main` · commits `81412ac` (βιογραφικό, GitHub, δίγλωσσα OG) και το επόμενο (`chat.js`, `STATUS.md`) · χωρίς commit μένει μόνο το `CLAUDE.md`_
 
 ## Σύνοψη
 
@@ -28,7 +28,7 @@ _Τελευταία ενημέρωση: 2026-11-10 · branch `main` · τελε�
 ## Ανοιχτά θέματα / επόμενα βήματα
 
 - [x] **Commit:** οι αλλαγές για rate limiting, ενιαία πηγή περιεχομένου, favicon/OG, `migrations/` και `wrangler.toml` μπήκαν στο `8bf19d3`.
-- [ ] **`STATUS.md` στο git:** το αρχείο είναι ακόμα untracked.
+- [x] **`STATUS.md` στο git:** μπήκε στο `81412ac`.
 - [x] **Rate limiting στην παραγωγή:** έγιναν η migration `--remote`, το secret `RATE_SALT` και το deploy (2026-11-09).
 - [x] **Έλεγχος παραγωγής:** το `5210672` είναι deployed στο production και τα secrets `ANTHROPIC_API_KEY` και `RATE_SALT` έχουν οριστεί.
 - [x] **Δοκιμή chatbot στην παραγωγή:** απαντά κανονικά στο live site (2026-11-09), άρα η D1 και τα secrets λειτουργούν.
@@ -37,7 +37,9 @@ _Τελευταία ενημέρωση: 2026-11-10 · branch `main` · τελε�
 - [x] **Μετάβαση στο GitHub `marthax22`:** οι σύνδεσμοι των projects ελέγχθηκαν και ανοίγουν όλοι (2026-11-10). Δύο repos έχουν άλλο όνομα: `Implementation-of-Basic-Data-Structure`, `Wieners-Attack-on-RSA-Assignment`.
 - [x] Κείμενα Open Graph δίγλωσσα (EL / EN) στα ίδια tags.
 - [ ] **Έλεγχος αγγλικού CV:** να διαβαστεί η μετάφραση πριν το deploy.
-- [ ] **Commit:** εκκρεμούν `public/index.html`, `functions/api/chat.js`, `CLAUDE.md`, τα δύο PDF και το `STATUS.md`.
+- [x] **Commit:** `public/` και `STATUS.md` στο `81412ac` (pushed στο github.com/marthax22/portfolio), `functions/api/chat.js` στο επόμενο commit.
+- [ ] **Push:** το commit με το `chat.js` δεν έχει γίνει ακόμα push.
+- [ ] **`CLAUDE.md`:** η σημείωση για τα δίγλωσσα OG δεν έχει μπει ακόμα σε commit.
 - [ ] **Deploy:** οι αλλαγές της 2026-11-10 δεν είναι ακόμα στο production.
 
 ## Χρήσιμες εντολές

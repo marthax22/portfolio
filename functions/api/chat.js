@@ -35,7 +35,7 @@ FACTS ABOUT MARTHA
 
 const PROMPT_TAIL = `CONTACT
 - Email: marthacd@csd.auth.gr
-- GitHub: github.com/marthax22 and github.com/marthachd
+- GitHub: github.com/marthax22
 - The contact form in the "Contact" section of this site.
 
 HOW TO ANSWER
