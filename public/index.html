@@ -11,12 +11,13 @@
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://portfolio-martha-charalampidou.pages.dev/">
-  <meta property="og:title" content="Μάρθα Χαραλαμπίδου | Portfolio">
-  <meta property="og:description" content="Φοιτήτρια Πληροφορικής στο ΑΠΘ. Projects σε Python, C++, Java και web εφαρμογές.">
+  <!-- Τα OG κείμενα είναι δίγλωσσα (EL / EN), γιατί οι crawlers δεν τρέχουν JS -->
+  <meta property="og:title" content="Μάρθα Χαραλαμπίδου / Martha Charalampidou | Portfolio">
+  <meta property="og:description" content="Φοιτήτρια Πληροφορικής στο ΑΠΘ. Projects σε Python, C++, Java και web εφαρμογές. / Computer Science student at AUTh. Projects in Python, C++, Java and web apps.">
   <meta property="og:image" content="https://portfolio-martha-charalampidou.pages.dev/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Μάρθα Χαραλαμπίδου, Φοιτήτρια Πληροφορικής ΑΠΘ">
+  <meta property="og:image:alt" content="Μάρθα Χαραλαμπίδου, Φοιτήτρια Πληροφορικής ΑΠΘ / Martha Charalampidou, Computer Science student at AUTh">
   <meta property="og:locale" content="el_GR">
   <meta property="og:locale:alternate" content="en_US">
   <meta name="twitter:card" content="summary_large_image">
@@ -215,6 +216,10 @@
     }
     .contact-item:hover { border-color: var(--accent); }
     .contact-item small { display: block; color: var(--muted); font-size: .8rem; }
+    /* Βιογραφικό: δύο σύνδεσμοι (EL / EN) μέσα στο ίδιο contact-item */
+    .cv-links { display: flex; flex-wrap: wrap; gap: 6px 16px; }
+    .cv-links a { color: var(--accent); font-weight: 600; padding: 4px 0; }
+    .cv-links a:hover { text-decoration: underline; }
     form {
       background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
       padding: 26px; display: grid; gap: 16px;
@@ -405,6 +410,8 @@
           <div class="btns">
             <a href="#projects" class="btn btn-primary" data-i18n="hero.cta1">Δες τις εργασίες μου →</a>
             <a href="#contact" class="btn btn-ghost" data-i18n="hero.cta2">Επικοινωνία</a>
+            <!-- Το href αλλάζει στο setLang() ώστε να δείχνει το CV της τρέχουσας γλώσσας -->
+            <a href="Martha_Charalampidou_CV_EL.pdf" id="cvBtn" class="btn btn-ghost" target="_blank" rel="noopener" data-i18n="hero.cv">📄 Βιογραφικό</a>
           </div>
         </div>
         <div class="avatar" aria-hidden="true">
@@ -485,7 +492,7 @@
               <h3 data-i18n="p1.title">Παιχνίδι Scrabble σε Python</h3>
               <p data-i18n="p1.desc">Απλοποιημένη εκδοχή του παιχνιδιού Scrabble.</p>
               <div class="project-tags"><span>#Python</span></div>
-              <div class="project-links"><a href="https://github.com/marthachd/Python-Scrabble-Project" target="_blank" rel="noopener">GitHub ↗</a></div>
+              <div class="project-links"><a href="https://github.com/marthax22/Python-Scrabble-Project" target="_blank" rel="noopener">GitHub ↗</a></div>
             </div>
           </article>
 
@@ -495,7 +502,7 @@
               <h3 data-i18n="p2.title">Πρωτόκολλο Ανταλλαγής Κλειδιών Diffie-Hellman</h3>
               <p data-i18n="p2.desc">Πρόγραμμα σε Python που υλοποιεί το πρωτόκολλο ανταλλαγής Diffie Hellman για g=3, p=101, a=77, b=91.</p>
               <div class="project-tags"><span>#Python</span><span data-i18n="tag.crypto">#Κρυπτογραφία</span></div>
-              <div class="project-links"><a href="https://github.com/marthachd/Diffie-Hellman-Key-Exchange-Protocol-Assignment" target="_blank" rel="noopener">GitHub ↗</a></div>
+              <div class="project-links"><a href="https://github.com/marthax22/Diffie-Hellman-Key-Exchange-Protocol-Assignment" target="_blank" rel="noopener">GitHub ↗</a></div>
             </div>
           </article>
 
@@ -505,7 +512,7 @@
               <h3 data-i18n="p3.title">Υλοποίηση Βιβλιοθήκης Δομών Δεδομένων σε C++</h3>
               <p data-i18n="p3.desc">Ομαδικό project που αφορά την δημιουργία μιας βιβλιοθήκης η οποία υποστηρίζει τις ακόλουθες δομές δεδομένων: σωρός ελαχίστων, σωρός μεγίστων ,δυαδικό δέντρο αναζήτησης AVL, γράφημα χωρίς κατευθύνσεις αλλά με βάρη στις ακμές , πίνακας κερματισμού υλοποιημένες στην γλώσσα προγραμματισμού C++.</p>
               <div class="project-tags"><span>#C++</span></div>
-              <div class="project-links"><a href="https://github.com/marthachd/Implementation-of-Basic-Data-Structures" target="_blank" rel="noopener">GitHub ↗</a></div>
+              <div class="project-links"><a href="https://github.com/marthax22/Implementation-of-Basic-Data-Structure" target="_blank" rel="noopener">GitHub ↗</a></div>
             </div>
           </article>
 
@@ -515,7 +522,7 @@
               <h3 data-i18n="p4.title">Η Επίθεση του Wiener στο RSA</h3>
               <p data-i18n="p4.desc">Επίθεση του Wiener για την εύρεση του ιδιωτικού εκθέτη d, αξιοποιώντας τα συνεχόμενα κλάσματα του λόγου e/N. Αφού υπολογιστεί το ιδιωτικό κλειδί, γίνεται αποκρυπτογράφηση του κρυπτοκειμένου μπλοκ προς μπλοκ.</p>
               <div class="project-tags"><span>#Python</span><span data-i18n="tag.crypto">#Κρυπτογραφία</span></div>
-              <div class="project-links"><a href="https://github.com/marthachd/Wiener-s-Attack-on-RSA-Assignment" target="_blank" rel="noopener">GitHub ↗</a></div>
+              <div class="project-links"><a href="https://github.com/marthax22/Wieners-Attack-on-RSA-Assignment" target="_blank" rel="noopener">GitHub ↗</a></div>
             </div>
           </article>
 
@@ -525,7 +532,7 @@
               <h3 data-i18n="p5.title">Animation σε x86 Assembly με Χρήση της Μνήμης Βίντεο</h3>
               <p data-i18n="p5.desc">Υλοποίηση animation σε 16-bit x86 Assembly, με άμεση πρόσβαση στη μνήμη βίντεο, χρονισμό μέσω timer interrupt και κίνηση ενός χαρακτήρα με μεταβολή χρώματος και τυχαία επέκταση.</p>
               <div class="project-tags"><span>#Assembly</span></div>
-              <div class="project-links"><a href="https://github.com/marthachd/x86-Assembly-Animation-Using-Video-Memory-Assignment" target="_blank" rel="noopener">GitHub ↗</a></div>
+              <div class="project-links"><a href="https://github.com/marthax22/x86-Assembly-Animation-Using-Video-Memory-Assignment" target="_blank" rel="noopener">GitHub ↗</a></div>
             </div>
           </article>
 
@@ -550,10 +557,10 @@
         <div class="contact-grid">
           <div class="contact-list reveal">
             <a class="contact-item" href="mailto:marthacd@csd.auth.gr"><span>✉️</span><div><small>Email</small>marthacd@csd.auth.gr</div></a>
-            <a class="contact-item" href="https://github.com/marthax22" target="_blank" rel="noopener"><span>🐙</span><div><small>GitHub 1</small>github.com/marthax22</div></a>
-            <a class="contact-item" href="https://github.com/marthachd" target="_blank" rel="noopener"><span>🐙</span><div><small>GitHub 2</small>github.com/marthachd</div></a>
+            <a class="contact-item" href="https://github.com/marthax22" target="_blank" rel="noopener"><span>🐙</span><div><small>GitHub</small>github.com/marthax22</div></a>
             
-             <div class="contact-item"><span>📍</span><div><small data-i18n="fact.location">Τοποθεσία</small><span data-i18n="contact.locationV">Θεσσαλονίκη, Ελλάδα</span></div></div>
+            <div class="contact-item"><span>📄</span><div><small data-i18n="contact.cv">Βιογραφικό (PDF)</small><span class="cv-links"><a href="Martha_Charalampidou_CV_EL.pdf" target="_blank" rel="noopener" hreflang="el" lang="el">Ελληνικά</a><a href="Martha_Charalampidou_CV_EN.pdf" target="_blank" rel="noopener" hreflang="en" lang="en">English</a></span></div></div>
+            <div class="contact-item"><span>📍</span><div><small data-i18n="fact.location">Τοποθεσία</small><span data-i18n="contact.locationV">Θεσσαλονίκη, Ελλάδα</span></div></div>
           </div>
 
           <form id="contactForm" class="reveal">
@@ -666,7 +673,7 @@
       "hero.tag": "👋 Hi, I'm",
       "hero.title": 'Martha Charalampidou<br><span class="gradient">Informatics Student</span>',
       "hero.text": "I study at the School of Informatics of the Aristotle University of Thessaloniki. I love building applications that solve real problems.",
-      "hero.cta1": "See my projects →", "hero.cta2": "Contact me",
+      "hero.cta1": "See my projects →", "hero.cta2": "Contact me", "hero.cv": "📄 Résumé",
       "avatar": "MC",
       "about.title": '<span class="mono">01.</span>About me',
       "about.sub": "Who I am and what I'm interested in",
@@ -697,7 +704,7 @@
       "p6.desc": "This very website! Responsive design, dark/light theme and Greek/English versions in plain HTML/CSS/JS.",
       "contact.title": '<span class="mono">04.</span>Contact',
       "contact.sub": "I'd be happy to talk about collaborations, internships or just technology!",
-      "contact.locationV": "Thessaloniki, Greece",
+      "contact.locationV": "Thessaloniki, Greece", "contact.cv": "Résumé (PDF)",
       "form.name": "Name", "form.subject": "Subject", "form.message": "Message", "form.send": "Send ✈️",
       "footer": "Martha Charalampidou · School of Informatics, AUTh",
       "meta.title": "Portfolio | Martha Charalampidou",
@@ -758,6 +765,8 @@
       document.querySelectorAll("[data-i18n-aria]").forEach(el => el.setAttribute("aria-label", t(el.dataset.i18nAria)));
       document.title = t("meta.title");
       document.querySelector('meta[name="description"]').content = t("meta.desc");
+      // Το κουμπί CV στο hero ανοίγει το PDF της τρέχουσας γλώσσας
+      document.getElementById("cvBtn").href = l === "en" ? "Martha_Charalampidou_CV_EN.pdf" : "Martha_Charalampidou_CV_EL.pdf";
       langSwitch.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === l));
       // Καθαρίζει τα μηνύματα επικύρωσης της προηγούμενης γλώσσας
       contactForm.querySelectorAll("input, textarea").forEach(f => f.setCustomValidity(""));
