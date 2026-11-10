@@ -1,6 +1,6 @@
 # Κατάσταση έργου
 
-_Τελευταία ενημέρωση: 2026-11-10 · branch `main` · commits `81412ac` (βιογραφικό, GitHub, δίγλωσσα OG), `b1a6f99` (`chat.js`, `STATUS.md`) και το επόμενο (`CLAUDE.md`) · καμία αλλαγή χωρίς commit_
+_Τελευταία ενημέρωση: 2026-11-10 · branch `main` · commits `81412ac` (βιογραφικό, GitHub, δίγλωσσα OG), `b1a6f99` (`chat.js`, `STATUS.md`) και `563c146` (`CLAUDE.md`), όλα pushed στο `origin/main`_
 
 ## Σύνοψη
 
@@ -38,7 +38,7 @@ _Τελευταία ενημέρωση: 2026-11-10 · branch `main` · commits `
 - [x] Κείμενα Open Graph δίγλωσσα (EL / EN) στα ίδια tags.
 - [ ] **Έλεγχος αγγλικού CV:** να διαβαστεί η μετάφραση πριν το deploy.
 - [x] **Commit:** `public/` και `STATUS.md` στο `81412ac` (pushed στο github.com/marthax22/portfolio), `functions/api/chat.js` στο `b1a6f99`.
-- [ ] **Push:** τα `b1a6f99` και το commit του `CLAUDE.md` δεν έχουν γίνει ακόμα push.
+- [x] **Push:** τα `b1a6f99` και `563c146` είναι στο github.com/marthax22/portfolio (2026-11-10).
 - [x] **`CLAUDE.md`:** η σημείωση για τα δίγλωσσα OG μπήκε σε commit.
 - [ ] **Deploy:** οι αλλαγές της 2026-11-10 δεν είναι ακόμα στο production.
 
